@@ -1,8 +1,22 @@
-import { NavLink } from "react-router-dom"
-import Logo from "../../../public/image/logo.png"
+import { NavLink, useNavigate } from "react-router-dom"
+import Logo from "../../../public/image/logo.png";
+import userIcon from "../../../public/image/user.png"
+import { IoSearchOutline } from "react-icons/io5";
+import { useEffect, useState } from "react";
 
 
 export default function Header() {
+    const [searchValue, setSearchValue] = useState('');
+    const navigate = useNavigate();
+
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        console.log(searchValue)
+    }
+
+
+    // menu items here 
     const menuItems = [
         {
             id: 1,
@@ -15,6 +29,14 @@ export default function Header() {
             href: "movies"
         }
     ]
+
+    useEffect(() => {
+        if (searchValue?.length > 0) {
+            navigate(`/search?q=${searchValue}`)
+        }
+    }, [searchValue, navigate])
+
+
     return (
         <header className="bg-black opacity-50 fixed top-0 w-full h-16 backdrop-blur-sm z-10  ">
             <div className="container mx-auto px-4 flex items-center h-full">
@@ -32,8 +54,8 @@ export default function Header() {
                             <NavLink
                                 key={item.id}
                                 to={`/${item.href}`}
-                                className={({ isActive }) =>`
-                                    ${isActive  ? "text-neutral-100": ""}
+                                className={({ isActive }) => `
+                                    ${isActive ? "text-neutral-100" : ""}
                                       px-2 hover:text-neutral-100
                                 `}
                             >
@@ -42,6 +64,30 @@ export default function Header() {
                         ))
                     }
                 </nav>
+                <div className="ml-auto flex items-center gap-5">
+                    <form
+                        onSubmit={handleSearch}
+                        className="flex items-center text-white"
+                    >
+                        <input
+                            type="text"
+                            name="search"
+                            placeholder="Search here..."
+                            className="px-4 py-1 bg-transparent rounded outline-none border-none hidden lg:block"
+                            onChange={(e) => setSearchValue(e.target.value)}
+                        />
+                        <button className="text-2xl ">
+                            <IoSearchOutline />
+                        </button>
+                    </form>
+                    <div className="w-8 h-8 rounded-full overflow-hidden cursor-pointer active:scale-50 transition-all">
+                        <img
+                            src={userIcon}
+                            alt=""
+                            width="w-full h-full"
+                        />
+                    </div>
+                </div>
             </div>
         </header>
     )
