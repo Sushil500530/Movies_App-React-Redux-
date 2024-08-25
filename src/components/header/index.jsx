@@ -1,23 +1,11 @@
-import { NavLink, useNavigate } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import Logo from "../../../public/image/logo.png";
 import userIcon from "../../../public/image/user.png"
 import { IoSearchOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
 
-
-export default function Header() {
-    const [searchValue, setSearchValue] = useState('');
-    const navigate = useNavigate();
-
-
-    const handleSearch = (e) => {
-        e.preventDefault();
-        console.log(searchValue)
-    }
-
-
     // menu items here 
-    const menuItems = [
+  export const menuItems = [
         {
             id: 1,
             label: "TV Show",
@@ -30,6 +18,18 @@ export default function Header() {
         }
     ]
 
+export default function Header() {
+    const [searchValue, setSearchValue] = useState('');
+    const navigate = useNavigate();
+
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        console.log(searchValue)
+    }
+
+
+
     useEffect(() => {
         if (searchValue?.length > 0) {
             navigate(`/search?q=${searchValue}`)
@@ -40,13 +40,13 @@ export default function Header() {
     return (
         <header className="bg-black opacity-50 fixed top-0 w-full h-16 backdrop-blur-sm z-10  ">
             <div className="container mx-auto px-4 flex items-center h-full">
-                <figure>
+                <Link to="/">
                     <img
                         src={Logo}
                         alt="logo"
                         width={120}
                     />
-                </figure>
+                </Link>
 
                 <nav className="hidden lg:flex items-center gap-4 ml-5 z-10">
                     {
