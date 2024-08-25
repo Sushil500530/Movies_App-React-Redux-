@@ -3,20 +3,12 @@ import Logo from "../../../public/image/logo.png";
 import userIcon from "../../../public/image/user.png"
 import { IoSearchOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
+import { PiTelevisionFill } from "react-icons/pi";
+import { BiSolidMoviePlay } from "react-icons/bi";
 
-    // menu items here 
-  export const menuItems = [
-        {
-            id: 1,
-            label: "TV Show",
-            href: "tv-show"
-        },
-        {
-            id: 2,
-            label: "Movies",
-            href: "movies"
-        }
-    ]
+
+
+
 
 export default function Header() {
     const [searchValue, setSearchValue] = useState('');
@@ -28,6 +20,22 @@ export default function Header() {
         console.log(searchValue)
     }
 
+
+    // menu items here 
+    const menuItems = [
+        {
+            id: 1,
+            label: "TV Show",
+            href: "tv-show",
+            icon: <PiTelevisionFill />
+        },
+        {
+            id: 2,
+            label: "Movies",
+            href: "movies",
+            icon: <BiSolidMoviePlay />
+        }
+    ];
 
 
     useEffect(() => {
