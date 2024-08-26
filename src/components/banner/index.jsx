@@ -1,3 +1,5 @@
+
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { useSelector } from "react-redux"
 
 export default function BannerHome() {
@@ -11,7 +13,7 @@ export default function BannerHome() {
                 {
                     bannerData?.length > 0 && bannerData.map((item) => {
                         return <div
-                            className="min-w-full min-h-[450px] lg:min-h-full overflow-hidden relative"
+                            className="min-w-full min-h-[450px] lg:min-h-full overflow-hidden relative group"
                             key={item?.id}
                         >
                             <div className="w-full h-full">
@@ -21,8 +23,23 @@ export default function BannerHome() {
                                     className="w-full h-full object-cover"
                                 />
                             </div>
+
+                            {/* button next and previouse like carousel  */}
+                            <div className="absolute top-0 w-full h-full hidden items-center justify-between z-10 group-hover:flex">
+                                <button className="bg-neutral-300 hover:bg-neutral-100 transition-all text-black rounded-full text-2xl p-1">
+                               <FaAngleLeft /> 
+                                </button>
+                                <button className="bg-neutral-300 hover:bg-neutral-100 transition-all text-black rounded-full text-2xl p-1">
+                                <FaAngleRight />
+                                </button>
+                            </div>
+
+
+
+                            {/* shadow bg in banner  */}
                             <div className="absolute top-0 w-full h-full bg-gradient-to-t from-neutral-900 to-transparent"></div>
 
+                            {/* footer details in banner  */}
                             <div className="container mx-auto ">
                                 <div className="absolute bottom-10 max-w-md px-3  ">
                                     <h1 className="font-bold text-2xl lg:text-4xl">{item?.title}</h1>
