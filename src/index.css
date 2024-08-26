@@ -15,3 +15,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
     @apply bg-neutral-900 text-neutral-300;
 }
+.rating{
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
+}
