@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { useSelector } from "react-redux"
 
@@ -18,6 +18,16 @@ export default function BannerHome() {
             setCurrentImage(prev =>prev + 1)
         }
     }
+
+    // auto-matic  slide carouser 
+    useEffect(()=> {
+        const interval = setInterval(()=>{
+            if(currentImage < bannerData?.length - 1){
+                setCurrentImage(prev =>prev + 1)
+            }
+        },4000)
+        return ()=> clearInterval(interval)
+    },[bannerData, currentImage])
     // console.log("what is find: " + bannerData)
     return (
         <section className="w-full h-full">
