@@ -37,7 +37,6 @@ export default function MobileNavbar() {
         }
     ];
 
-    console.log(menuItems);
 
     return (
         <section className="lg:hidden block bg-neutral-600 bg-opacity-40 w-full h-16 fixed bottom-0">
@@ -50,13 +49,7 @@ export default function MobileNavbar() {
                             className={({ isActive }) => `
                             ${isActive ? "text-neutral-100" : ""}
                               px-2 hover:text-neutral-100 text-4xl flex flex-col items-center justify-center gap-1
-                        `}
-                        //     className={({ isActive }) => `
-                        //     ${isActive} ? "text-white " : "text-neutral-800" 
-                        // "text-4xl flex flex-col items-center justify-center gap-5"
-                        
-                        // `}
-                        >
+                        `}>
                             <span className="text-2xl">
                                 {item.icon}
                             </span>
