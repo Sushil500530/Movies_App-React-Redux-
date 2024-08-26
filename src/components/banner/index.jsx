@@ -21,12 +21,11 @@ export default function BannerHome() {
 
     // auto-matic  slide carouser 
     useEffect(()=> {
-        const interval = setInterval(()=>{
-            if(currentImage < bannerData?.length - 1){
-                setCurrentImage(prev =>prev + 1)
-            }
-        },4000)
-        return ()=> clearInterval(interval)
+        const interval = setInterval(() => {
+            setCurrentImage(prev => (prev === bannerData?.length - 1 ? 0 : prev + 1));
+        }, 4000);
+
+        return () => clearInterval(interval);
     },[bannerData, currentImage])
     // console.log("what is find: " + bannerData)
     return (
