@@ -1,10 +1,23 @@
 
+import { useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { useSelector } from "react-redux"
 
 export default function BannerHome() {
     const { bannerData } = useSelector(state => state?.moviesData);
     const { imageURL } = useSelector(state => state?.moviesData);
+    const [currentImage,setCurrentImage]= useState(0)
+
+    const handlePreviouse = ()=> {
+        if(currentImage >0){
+            setCurrentImage(prev =>prev - 1)
+        }
+    }
+    const handleNext = ()=> {
+        if(currentImage < bannerData?.length - 1){
+            setCurrentImage(prev =>prev + 1)
+        }
+    }
     // console.log("what is find: " + bannerData)
     return (
         <section className="w-full h-full">
@@ -13,7 +26,8 @@ export default function BannerHome() {
                 {
                     bannerData?.length > 0 && bannerData.map((item) => {
                         return <div
-                            className="min-w-full min-h-[450px] lg:min-h-full overflow-hidden relative group"
+                            className="min-w-full min-h-[450px] lg:min-h-full overflow-hidden relative group transition-all"
+                            style={{transform: `translateX(-${currentImage * 100}%)`}}
                             key={item?.id}
                         >
                             <div className="w-full h-full">
@@ -25,11 +39,17 @@ export default function BannerHome() {
                             </div>
 
                             {/* button next and previouse like carousel  */}
-                            <div className="absolute top-0 w-full h-full hidden items-center justify-between z-10 group-hover:flex">
-                                <button className="bg-neutral-300 hover:bg-neutral-100 transition-all text-black rounded-full text-2xl p-1">
+                            <div className="absolute top-0 w-full h-full hidden items-center justify-between z-10 group-hover:lg:flex">
+                                <button 
+                                onClick={handlePreviouse}
+                                className="bg-neutral-300 hover:bg-neutral-100 transition-all text-black rounded-full text-2xl p-1"
+                                >
                                <FaAngleLeft /> 
                                 </button>
-                                <button className="bg-neutral-300 hover:bg-neutral-100 transition-all text-black rounded-full text-2xl p-1">
+                                <button 
+                                onClick={handleNext}
+                                className="bg-neutral-300 hover:bg-neutral-100 transition-all text-black rounded-full text-2xl p-1"
+                                >
                                 <FaAngleRight />
                                 </button>
                             </div>
@@ -42,7 +62,7 @@ export default function BannerHome() {
                             {/* footer details in banner  */}
                             <div className="container mx-auto ">
                                 <div className="absolute bottom-10 max-w-md px-3  ">
-                                    <h1 className="font-bold text-2xl lg:text-4xl">{item?.title}</h1>
+                                    <h1 className="font-bold text-2xl lg:text-4xl">{item?.title || item?.name}</h1>
                                     <p className="text-ellipsis line-clamp-3 my-2">{item?.overview}</p>
                                     <div className=" flex items-center gap-5">
                                         <h1>Rating : {Number(item?.vote_average).toFixed(1)}+</h1>
