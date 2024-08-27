@@ -9,7 +9,8 @@ export default function Home() {
       <BannerHome />
       <div className="container mx-auto px-3 my-5">
         <h1 className="text-xl lg:text-2xl font-bold">Tranding Show</h1>
-        <div  className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mt-3">
+        <div className="overflow-hidden">
+        <div  className="grid grid-cols-[repeat(auto,250px)] grid-flow-col gap-4 mt-3 overflow-x-auto">
         {
         trandingMoviesData?.length > 0 && trandingMoviesData?.map((data, index) => {
           return <Card
@@ -20,6 +21,8 @@ export default function Home() {
           />
         })
       }
+        </div>
+
         </div>
       </div>
     </div>
