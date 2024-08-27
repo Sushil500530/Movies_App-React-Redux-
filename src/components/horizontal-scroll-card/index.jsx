@@ -30,7 +30,7 @@ export default function HorizontalScrollCard({ data = [], heading }) {
     <div className="container mx-auto px-3 my-5">
       <h1 className="text-xl lg:text-2xl font-bold">{heading}</h1>
       <div className="relative">
-        <div ref={container} className="grid grid-cols-[repeat(auto,250px)] grid-flow-col gap-4 mt-3 overflow-x-scroll scrollbar-none scroll-smooth transition-all">
+        <div ref={container} className="grid grid-cols-[repeat(auto,250px)] grid-flow-col gap-4 mt-3 overflow-hidden overflow-x-hidden scrollbar-none scroll-smooth transition-all">
           {data.length > 0 && data.map((item, index) => (
             <Card
               key={item.id}
@@ -41,16 +41,16 @@ export default function HorizontalScrollCard({ data = [], heading }) {
           ))}
         </div>
         {/* Button next and previous like carousel */}
-        <div className="absolute top-0 w-full h-full hidden lg:flex items-center justify-between z-10">
+        <div className="absolute top-0 w-full h-full hidden lg:flex items-center justify-between">
           <button
             onClick={handlePreviouse}
-            className="bg-neutral-300 -ml-3 hover:bg-neutral-100 transition-all text-black rounded-full text-base lg:text-xl p-1"
+            className="bg-neutral-300 -ml-3 hover:bg-neutral-100 transition-all text-black rounded-full text-base lg:text-xl p-1 z-10"
           >
             <FaAngleLeft />
           </button>
           <button
             onClick={handleNext}
-            className="bg-neutral-300 relative -right-3 hover:bg-neutral-100 transition-all text-black rounded-full text-base lg:text-xl p-1"
+            className="bg-neutral-300 relative -right-3 hover:bg-neutral-100 transition-all text-black rounded-full text-base lg:text-xl p-1 z-10"
           >
             <FaAngleRight />
           </button>
