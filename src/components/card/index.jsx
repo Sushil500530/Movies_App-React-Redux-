@@ -7,7 +7,7 @@ export default function Card({ data, tranding, index }) {
   const { imageURL } = useSelector(state => state?.moviesData);
   return (
     <Link to={"/" + data?.media_type + "/" + data?.id}>
-      <div className="w-full min-w-[250px] max-w-[250px] h-80 rounded overflow-hidden relative z-10">
+      <div className="w-full min-w-[270px] max-w-[270px] h-80 rounded overflow-hidden relative z-10">
         <img
           src={imageURL + data?.poster_path}
           alt="card-image"
