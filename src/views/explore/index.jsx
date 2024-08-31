@@ -11,10 +11,11 @@ export default function ExplorePage() {
   const [tvsData, setTvsData] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const moviesParams = params?.explore !== "movies" ? params?.explore : 'movie'
 
   const fetchTvsData = async () => {
     try {
-      const response = await axios.get(`/discover/${params?.explore}`, {
+      const response = await axios.get(`/discover/${moviesParams}`, {
         params: {
           page: pageNumber,
         },
