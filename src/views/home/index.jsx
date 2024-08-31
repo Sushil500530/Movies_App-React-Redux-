@@ -5,28 +5,38 @@ import { useFetchData } from "../../hooks/custom-fetch-data/idnex";
 
 export default function Home() {
   const trandingMoviesData = useSelector(state => state?.moviesData?.bannerData);
-  const {data:nowPlayingData}= useFetchData('/movie/now_playing')
-  const {data:popularView}= useFetchData('/movie/top_rated')
- 
-console.log(popularView)
+  const { data: nowPlayingData } = useFetchData('/movie/now_playing');
+  const { data: topRatedData } = useFetchData('/movie/top_rated');
+  const { data: tvSeriesData } = useFetchData('/tv/popular');
+  const {data:onAirData}= useFetchData('/tv/on_the_air');
+
+  console.log(topRatedData)
 
 
   return (
     <div>
       <BannerHome />
-        <HorizontalScrollCard
+      <HorizontalScrollCard
         data={trandingMoviesData}
         heading="Trending Show"
-        tranding ={true}
-        />
-        <HorizontalScrollCard
+        tranding={true}
+      />
+      <HorizontalScrollCard
         data={nowPlayingData}
         heading="Now Playing"
-        />
-        <HorizontalScrollCard
-        data={popularView}
-        heading="Popular Views"
-        />
+      />
+      <HorizontalScrollCard
+        data={topRatedData}
+        heading="Top Rated Movies"
+      />
+      <HorizontalScrollCard
+        data={tvSeriesData}
+        heading="Popular TV Show"
+      />
+      <HorizontalScrollCard
+        data={onAirData}
+        heading="On The Air"
+      />
     </div>
   )
 }

@@ -39,7 +39,7 @@ export default function MobileNavbar() {
 
 
     return (
-        <section className="lg:hidden block bg-neutral-600 bg-opacity-40 w-full h-16 fixed bottom-0">
+        <section className="lg:hidden block bg-black bg-opacity-40 w-full h-16 fixed z-50 bottom-0">
             <div className="flex justify-around items-center h-full text-neutral-400">
                 {
                     menuItems.map((item) => (

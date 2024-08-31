@@ -26,7 +26,7 @@ export default function Header() {
         {
             id: 1,
             label: "TV Show",
-            href: "tv-show",
+            href: "tv",
             icon: <PiTelevisionFill />
         },
         {
@@ -46,7 +46,7 @@ export default function Header() {
 
 
     return (
-        <header className="bg-black opacity-50 fixed top-0 w-full h-16 backdrop-blur-sm z-10  ">
+        <header className="bg-black opacity-60 fixed top-0 w-full h-16 backdrop-blur-2xl z-40  ">
             <div className="container mx-auto px-4 flex items-center h-full">
                 <Link to="/">
                     <img
