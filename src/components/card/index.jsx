@@ -8,7 +8,7 @@ export default function Card({ data, tranding,media_type, index }) {
   const mediaType = data?.mediaType ?? media_type ;
   return (
     <Link to={"/" + mediaType + "/" + data?.id}>
-      <div className="w-full min-w-[270px] max-w-[270px] h-80 rounded overflow-hidden relative z-10 hover:scale-105 transition-all">
+      <div className="w-full lg:min-w-[270px] h-80 rounded overflow-hidden relative z-10 hover:scale-105 transition-all">
         <img
           src={imageURL + data?.poster_path}
           alt="card-image"

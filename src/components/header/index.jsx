@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom"
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom"
 import Logo from "../../../public/image/logo.png";
 import userIcon from "../../../public/image/user.png"
 import { IoSearchOutline } from "react-icons/io5";
@@ -11,7 +11,11 @@ import { BiSolidMoviePlay } from "react-icons/bi";
 
 
 export default function Header() {
-    const [searchValue, setSearchValue] = useState('');
+    const location = useLocation();
+    const removeSpace = location?.search?.slice(3)?.split("%20").join(" ")
+    const [searchValue, setSearchValue] = useState(removeSpace);
+    // const [searchValue, setSearchValue] = useState(location?.search?.slice(3));
+    
     const navigate = useNavigate();
 
 
@@ -39,10 +43,11 @@ export default function Header() {
 
 
     useEffect(() => {
-        if (searchValue?.length > 0) {
+        console.log("search", searchValue)
+        if (searchValue) {
             navigate(`/search?q=${searchValue}`)
         }
-    }, [searchValue, navigate])
+    }, [searchValue])
 
 
     return (
@@ -80,6 +85,7 @@ export default function Header() {
                         <input
                             type="text"
                             name="search"
+                            value={searchValue}
                             placeholder="Search here..."
                             className="px-4 py-1 bg-transparent rounded outline-none border-none hidden lg:block"
                             onChange={(e) => setSearchValue(e.target.value)}

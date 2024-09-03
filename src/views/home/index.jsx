@@ -20,22 +20,27 @@ export default function Home() {
         data={trandingMoviesData}
         heading="Trending Show"
         tranding={true}
+      
       />
       <HorizontalScrollCard
         data={nowPlayingData}
         heading="Now Playing"
+          media_type={'movie'}
       />
       <HorizontalScrollCard
         data={topRatedData}
         heading="Top Rated Movies"
+        media_type={'movie'}
       />
       <HorizontalScrollCard
         data={tvSeriesData}
         heading="Popular TV Show"
+        media_type={'tv'}
       />
       <HorizontalScrollCard
         data={onAirData}
         heading="On The Air"
+        media_type={'tv'}
       />
     </div>
   )

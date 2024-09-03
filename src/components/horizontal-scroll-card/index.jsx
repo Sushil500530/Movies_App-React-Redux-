@@ -3,7 +3,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { useRef } from 'react';
 import Card from './../card/index';
 
-export default function HorizontalScrollCard({ data = [], heading ,tranding}) {
+export default function HorizontalScrollCard({ data = [], heading ,tranding,media_type}) {
   const container = useRef();
 
   const handleNext = () => {
@@ -37,6 +37,7 @@ export default function HorizontalScrollCard({ data = [], heading ,tranding}) {
               data={item}
               tranding={tranding}
               index={index}
+              media_type={media_type}
             />
           ))}
         </div>

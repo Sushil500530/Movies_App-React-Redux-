@@ -1,13 +1,12 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import Card from "../../components/card";
 
 export default function ExplorePage() {
   const params = useParams();
   console.log(params?.explore?.slice(0, 2));
-  const dispatch = useDispatch();
   const [tvsData, setTvsData] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
