@@ -36,7 +36,7 @@ export default function SearchMovie() {
   }, [location?.search]);
 
   return (
-    <div className="pt-16 lg:px-10">
+    <div className="py-16 lg:px-10">
     <div className="container mx-auto">
       <h2 className="text-lg lg:text-xl my-3 font-semibold capitalize">
         Search Results

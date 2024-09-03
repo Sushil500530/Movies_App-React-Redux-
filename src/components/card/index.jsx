@@ -9,11 +9,16 @@ export default function Card({ data, tranding,media_type, index }) {
   return (
     <Link to={"/" + mediaType + "/" + data?.id}>
       <div className="w-full lg:min-w-[270px] h-80 rounded overflow-hidden relative z-10 hover:scale-105 transition-all">
-        <img
+        {
+          data?.poster_path ?  <img
           src={imageURL + data?.poster_path}
           alt="card-image"
           className="w-full h-full"
-        />
+        /> : <div className="flex items-center justify-center w-full h-full relative -top-14">
+            <h1 className="text-base pt-3">No Image Found!</h1>
+          </div>
+        }
+       
         <div className="absolute top-4">
           {
             tranding && (
