@@ -20,7 +20,6 @@ export default function ExplorePage() {
         },
       });
       // dispatch(setTvsData(response?.data?.images?.secure_base_url+"original"))
-      console.log("response data :", response?.data?.results);
       setTvsData((preve) => {
         return [...preve, ...response?.data?.results];
       });

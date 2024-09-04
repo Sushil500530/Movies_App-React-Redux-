@@ -13,7 +13,7 @@ export default function SearchMovie() {
 
   const fetchSearchData = async () => {
     try {
-      const response = await axios.get(`/search/collection`, {
+      const response = await axios.get(`/search/multi`, {
         params: {
           query: location?.search?.slice(3),
           page: page,
@@ -57,7 +57,7 @@ export default function SearchMovie() {
 
   return (
     <div className="py-16 lg:px-10">
-      <div className="lg:hidden w-full my-3 mx-4 sticky top-16 z-50">
+      <div className="lg:hidden w-full my-3 mx-2 sticky top-16 z-50">
         <input
         type="text" 
         name="searchInput" 
