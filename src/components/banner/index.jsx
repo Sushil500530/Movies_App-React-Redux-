@@ -5,27 +5,27 @@ import { useSelector } from "react-redux"
 export default function BannerHome() {
     const { bannerData } = useSelector(state => state?.moviesData);
     const { imageURL } = useSelector(state => state?.moviesData);
-    const [currentImage,setCurrentImage]= useState(0)
+    const [currentImage, setCurrentImage] = useState(0)
 
-    const handlePreviouse = ()=> {
-        if(currentImage >0){
-            setCurrentImage(prev =>prev - 1)
+    const handlePreviouse = () => {
+        if (currentImage > 0) {
+            setCurrentImage(prev => prev - 1)
         }
     }
-    const handleNext = ()=> {
-        if(currentImage < bannerData?.length - 1){
-            setCurrentImage(prev =>prev + 1)
+    const handleNext = () => {
+        if (currentImage < bannerData?.length - 1) {
+            setCurrentImage(prev => prev + 1)
         }
     }
 
     // auto-matic  slide carouser 
-    useEffect(()=> {
+    useEffect(() => {
         const interval = setInterval(() => {
             setCurrentImage(prev => (prev === bannerData?.length - 1 ? 0 : prev + 1));
         }, 4000);
 
         return () => clearInterval(interval);
-    },[bannerData, currentImage])
+    }, [bannerData, currentImage])
     // console.log("what is find: " + bannerData)
     return (
         <section className="w-full h-full">
@@ -35,7 +35,7 @@ export default function BannerHome() {
                     bannerData?.length > 0 && bannerData.map((item) => {
                         return <div
                             className="min-w-full min-h-[450px] lg:min-h-full overflow-hidden relative group transition-all"
-                            style={{transform: `translateX(-${currentImage * 100}%)`}}
+                            style={{ transform: `translateX(-${currentImage * 100}%)` }}
                             key={item?.id}
                         >
                             <div className="w-full h-full">
@@ -48,17 +48,17 @@ export default function BannerHome() {
 
                             {/* button next and previouse like carousel  */}
                             <div className="absolute top-0 w-full h-full hidden items-center justify-between z-10 group-hover:lg:flex">
-                                <button 
-                                onClick={handlePreviouse}
-                                className="bg-neutral-300 hover:bg-neutral-100 transition-all text-black rounded-full text-2xl p-1"
+                                <button
+                                    onClick={handlePreviouse}
+                                    className="bg-neutral-300 hover:bg-neutral-100 transition-all text-black rounded-full text-2xl p-1"
                                 >
-                               <FaAngleLeft /> 
+                                    <FaAngleLeft />
                                 </button>
-                                <button 
-                                onClick={handleNext}
-                                className="bg-neutral-300 hover:bg-neutral-100 transition-all text-black rounded-full text-2xl p-1"
+                                <button
+                                    onClick={handleNext}
+                                    className="bg-neutral-300 hover:bg-neutral-100 transition-all text-black rounded-full text-2xl p-1"
                                 >
-                                <FaAngleRight />
+                                    <FaAngleRight />
                                 </button>
                             </div>
 

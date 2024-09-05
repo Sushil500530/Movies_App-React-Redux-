@@ -9,13 +9,13 @@ export default function SearchMovie() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
-
+  const query = location?.search?.slice(3);
 
   const fetchSearchData = async () => {
     try {
       const response = await axios.get(`/search/multi`, {
         params: {
-          query: location?.search?.slice(3),
+          query: query,
           page: page,
         },
       });
@@ -33,13 +33,17 @@ export default function SearchMovie() {
     }
   };
   useEffect(() => {
-    fetchSearchData();
+    if(query){
+         fetchSearchData();
+    }
   }, [page]);
 
   useEffect(() => {
-    setPage(1)
+    if(query){
+      setPage(1)
     setData([])
     fetchSearchData();
+    }
   }, [location?.search]);
 
 
@@ -57,13 +61,14 @@ export default function SearchMovie() {
 
   return (
     <div className="py-16 lg:px-10">
-      <div className="lg:hidden w-full my-3 mx-2 sticky top-16 z-50">
+      <div className="lg:hidden  my-3 w-full px-2 sticky top-16 z-50 ">
         <input
-        type="text" 
-        name="searchInput" 
-        onChange={(e)=>  navigate(`/search?q=${e.target.value}`)}
-        className="rounded-full px-3 py-1 bg-neutral-800 text-neutral-300 w-full"
-        placeholder="search here..."
+          type="text"
+          name="searchInput"
+          onChange={(e) => navigate(`/search?q=${e.target.value}`)}
+          value={query?.split("%20")?.join(" ")}
+          className="rounded-full px-3 py-1 bg-neutral-800 text-neutral-300 w-full "
+          placeholder="search here..."
         />
       </div>
       <div className="container mx-auto">

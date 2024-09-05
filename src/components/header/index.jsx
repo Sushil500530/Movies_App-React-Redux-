@@ -43,7 +43,6 @@ export default function Header() {
 
 
     useEffect(() => {
-        console.log("search", searchValue)
         if (searchValue) {
             navigate(`/search?q=${searchValue}`)
         }

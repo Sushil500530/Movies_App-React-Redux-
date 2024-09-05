@@ -14,10 +14,9 @@ export default function MoviesDetails() {
   const { data: similarData } = useFetchData(`/${explore}/${id}/similar`)
   const { data: recommendationData } = useFetchData(`/${explore}/${id}/recommendations`)
   const crewData = castData?.crew;
-  // console.log("cast data :",castData?.crew[0]?.name)
   const writerValue = crewData?.filter((item) => item?.job === "Writer")?.map(ele => ele?.name)?.join(",")
   
-  console.log("similar data :",similarData)
+  // console.log("similar data :",similarData)
 
   const duration = Number(detailsData?.runtime / 60).toFixed(1)?.split(".")
   return (
@@ -95,7 +94,7 @@ export default function MoviesDetails() {
          </div>
         </div>
       </div>
-        <div className="container mx-auto px-3">
+        <div className="container mx-auto px-3 space-y-10">
           <HorizontalScrollCard data={similarData} heading={`Similar ${explore}`} media_type={explore} />
           <HorizontalScrollCard data={recommendationData} heading={`Recommendations ${explore}`} media_type={explore} />
         </div>
