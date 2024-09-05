@@ -3,17 +3,21 @@ import { useFetchDetailsData } from "../../hooks/fetch-details-data";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import Devider from "../../components/devider";
+import { useFetchData } from './../../hooks/custom-fetch-data/idnex';
+import HorizontalScrollCard from "../../components/horizontal-scroll-card";
 
 export default function MoviesDetails() {
   const { id, explore } = useParams();
   const { imageURL } = useSelector(state => state?.moviesData);
   const { data: detailsData } = useFetchDetailsData(`/${explore}/${id}`)
   const { data: castData } = useFetchDetailsData(`/${explore}/${id}/credits`)
+  const { data: similarData } = useFetchData(`/${explore}/${id}/similar`)
+  const { data: recommendationData } = useFetchData(`/${explore}/${id}/recommendations`)
   const crewData = castData?.crew;
   // console.log("cast data :",castData?.crew[0]?.name)
   const writerValue = crewData?.filter((item) => item?.job === "Writer")?.map(ele => ele?.name)?.join(",")
-  // console.log("writer value :",writerValue)
-
+  
+  console.log("similar data :",similarData)
 
   const duration = Number(detailsData?.runtime / 60).toFixed(1)?.split(".")
   return (
@@ -69,7 +73,7 @@ export default function MoviesDetails() {
           </div>
           {/* director  */}
           <div>
-            {/* <p><span className="text-white">Director</span> : {crewData[0]?.name} </p> */}
+            <p><span className="text-white">Director</span> : {crewData ? crewData[0]?.name : "" } </p>
             <Devider />
             <p><span className="text-white">Writter</span> : {writerValue} </p>
           </div>
@@ -91,6 +95,10 @@ export default function MoviesDetails() {
          </div>
         </div>
       </div>
+        <div className="container mx-auto px-3">
+          <HorizontalScrollCard data={similarData} heading={`Similar ${explore}`} media_type={explore} />
+          <HorizontalScrollCard data={recommendationData} heading={`Recommendations ${explore}`} media_type={explore} />
+        </div>
     </div>
   )
 }

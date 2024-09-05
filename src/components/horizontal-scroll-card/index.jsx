@@ -28,7 +28,7 @@ export default function HorizontalScrollCard({ data = [], heading ,tranding,medi
 
   return (
     <div className="container mx-auto px-3 my-5">
-      <h1 className="text-xl lg:text-2xl font-bold">{heading}</h1>
+      <h1 className="text-xl lg:text-2xl font-bold capitalize">{heading}</h1>
       <div className="relative">
         <div ref={container} className="grid grid-cols-[repeat(auto,270px)] grid-flow-col gap-4 mt-3 overflow-hidden overflow-x-hidden scrollbar-none scroll-smooth transition-all">
           {data.length > 0 && data.map((item, index) => (
