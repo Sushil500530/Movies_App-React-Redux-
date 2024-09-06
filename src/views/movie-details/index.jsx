@@ -5,6 +5,8 @@ import moment from "moment";
 import Devider from "../../components/devider";
 import { useFetchData } from './../../hooks/custom-fetch-data/idnex';
 import HorizontalScrollCard from "../../components/horizontal-scroll-card";
+import { useState } from "react";
+import VideoPlay from "../../components/video-play";
 
 export default function MoviesDetails() {
   const { id, explore } = useParams();
@@ -14,16 +16,21 @@ export default function MoviesDetails() {
   const { data: similarData } = useFetchData(`/${explore}/${id}/similar`)
   const { data: recommendationData } = useFetchData(`/${explore}/${id}/recommendations`)
   const crewData = castData?.crew;
-  const writerValue = crewData?.filter((item) => item?.job === "Writer")?.map(ele => ele?.name)?.join(",")
-  
+  const writerValue = crewData?.filter((item) => item?.job === "Writer")?.map(ele => ele?.name)?.join(",");
+  const [playVideo,setPlayVideo] = useState(false);
+  const [videoId, setVideoId] = useState("");
   // console.log("similar data :",similarData)
-
   const duration = Number(detailsData?.runtime / 60).toFixed(1)?.split(".")
+
+
+  const handleVideoPlay = (id) => {
+    setPlayVideo(true);
+    setVideoId(id);
+  };
+
+
   return (
     <div>
-      {/* <h2 className="text-lg lg:text-xl my-3 font-semibold capitalize">
-         Movies Details
-        </h2> */}
       {/* banner section  */}
       <div className="w-full h-[320px] relative hidden lg:block">
         <div className="w-full h-full">
@@ -35,6 +42,7 @@ export default function MoviesDetails() {
         </div>
         <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-neutral-900 to-transparent"></div>
       </div>
+      {/* poster image section  */}
       <div className="container mx-auto px-3 py-16 lg:py-0 flex flex-col gap-5 lg:flex-row lg:gap-10 mt-1">
         <div className="relative w-fit mx-auto lg:mx-0 lg:-mt-28 min-w-60">
           <img
@@ -42,7 +50,7 @@ export default function MoviesDetails() {
             alt="details image"
             className="lg:w-60 w-80 h-80 object-cover rounded"
           />
-          <button className="px-4 py-2 bg-gray-600 hover:bg-gray-700 transition-all rounded w-full !mt-3 text-lg font-semibold">Play Now</button>
+          <button onClick={handleVideoPlay} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 transition-all rounded w-full !mt-3 text-lg font-semibold">Play Now</button>
         </div>
         <div>
           <h1 className="text-2xl lg:text-4xl font-bold text-white">{detailsData?.title || detailsData?.name}</h1>
@@ -99,6 +107,14 @@ export default function MoviesDetails() {
           <HorizontalScrollCard data={similarData} heading={`Similar ${explore}`} media_type={explore} />
           <HorizontalScrollCard data={recommendationData} heading={`Recommendations ${explore}`} media_type={explore} />
         </div>
+
+        {/* video play section  */}
+        {
+          playVideo && (
+             <VideoPlay setPlayVideo={setPlayVideo} />
+          )
+        }
+       
     </div>
   )
 }
