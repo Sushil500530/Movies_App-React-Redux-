@@ -42,6 +42,7 @@ export default function MoviesDetails() {
             alt="details image"
             className="lg:w-60 w-80 h-80 object-cover rounded"
           />
+          <button className="px-4 py-2 bg-gray-600 hover:bg-gray-700 transition-all rounded w-full !mt-3 text-lg font-semibold">Play Now</button>
         </div>
         <div>
           <h1 className="text-2xl lg:text-4xl font-bold text-white">{detailsData?.title || detailsData?.name}</h1>
