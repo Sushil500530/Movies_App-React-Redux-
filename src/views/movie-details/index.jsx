@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom"
-import { useFetchDetailsData } from "../../hooks/fetch-details-data";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import Devider from "../../components/devider";
@@ -7,6 +6,7 @@ import { useFetchData } from './../../hooks/custom-fetch-data/idnex';
 import HorizontalScrollCard from "../../components/horizontal-scroll-card";
 import { useState } from "react";
 import VideoPlay from "../../components/video-play";
+import useFetchDetailsData from "../../hooks/fetch-details-data";
 
 export default function MoviesDetails() {
   const { id, explore } = useParams();
@@ -50,7 +50,7 @@ export default function MoviesDetails() {
             alt="details image"
             className="lg:w-60 w-80 h-80 object-cover rounded"
           />
-          <button onClick={handleVideoPlay} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 transition-all rounded w-full !mt-3 text-lg font-semibold">Play Now</button>
+          <button onClick={()=>handleVideoPlay(detailsData?.id)} className="px-4 py-2 bg-gradient-to-l from-amber-600 to-red-700 hover:scale-105 transition-all rounded w-full !mt-3 text-md font-semibold">Play Now</button>
         </div>
         <div>
           <h1 className="text-2xl lg:text-4xl font-bold text-white">{detailsData?.title || detailsData?.name}</h1>
@@ -111,7 +111,7 @@ export default function MoviesDetails() {
         {/* video play section  */}
         {
           playVideo && (
-             <VideoPlay setPlayVideo={setPlayVideo} />
+             <VideoPlay videoId={videoId} setPlayVideo={setPlayVideo} />
           )
         }
        

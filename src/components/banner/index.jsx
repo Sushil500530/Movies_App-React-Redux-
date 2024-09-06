@@ -79,7 +79,7 @@ export default function BannerHome() {
                                             {Number(item?.popularity).toFixed(0)}</h1>
                                     </div>
                                     <button
-                                        className="bg-gradient-to-l from-amber-600 to-red-700 active:scale-90 transition-all font-normal text-base px-4 py-2 rounded mt-3"
+                                        className="bg-gradient-to-l from-amber-600 to-red-700 active:scale-90 z-10 transition-all font-normal text-base px-4 py-2 rounded mt-3"
                                     >Play Now</button>
                                 </div>
                             </div>

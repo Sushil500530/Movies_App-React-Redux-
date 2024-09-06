@@ -1,23 +1,26 @@
-import axios from "axios";
-import { useState,useEffect } from "react";
+import axios from "axios"
+import { useEffect, useState } from "react"
 
-export const useFetchDetailsData = (endpoint)=> {
-    const [data, setData] = useState([]);
-    const [loading,setLoading]= useState(false);
+const useFetchDetailsData = (endpoint)=>{
+    const [data,setData] = useState()
+    const [loading,setLoading] = useState(false)
 
-    const fetchDetailsData = async()=> {
-        setLoading(true)
+    const fetchData = async()=>{
         try {
-          const response = await axios.get(endpoint);
-          setData(response?.data)
+            setLoading(true)
+            const response = await axios.get(endpoint)
+            setLoading(false)
+            setData(response.data)
         } catch (error) {
-          console.log("error",error)
-        }
-      }
-    
-      useEffect(()=> {
-        fetchDetailsData();
-      },[])
+            console.log('error',error)
+       }
+    }
 
-    return {data,loading}
+    useEffect(()=>{
+        fetchData()
+    },[endpoint])
+
+    return { data , loading}
 }
+
+export default useFetchDetailsData
