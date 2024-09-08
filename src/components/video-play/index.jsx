@@ -7,7 +7,6 @@ import useFetchDetailsData from './../../hooks/fetch-details-data/index';
 export default function VideoPlay({ videoId, setPlayVideo }) {
     const {explore} = useParams();
     const {data:videoData} =  useFetchDetailsData(`/${explore}/${videoId}/videos`);
-    console.log("play  data :", videoData?.results[0] || [''])
 
     const handleClose = () => {
         setPlayVideo(false);

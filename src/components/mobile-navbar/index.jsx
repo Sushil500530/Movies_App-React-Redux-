@@ -19,7 +19,7 @@ export default function MobileNavbar() {
         {
             id: 2,
             label: "TV Show",
-            href: "tv-show",
+            href: "tv",
             icon: <PiTelevisionFill />
         },
         {

@@ -10,7 +10,7 @@ export default function Home() {
   const { data: tvSeriesData } = useFetchData('/tv/popular');
   const {data:onAirData}= useFetchData('/tv/on_the_air');
 
-  console.log(topRatedData)
+  // console.log(topRatedData)
 
 
   return (
@@ -20,6 +20,7 @@ export default function Home() {
         data={trandingMoviesData}
         heading="Trending Show"
         tranding={true}
+        media_type={'tranding'}
       
       />
       <HorizontalScrollCard

@@ -54,7 +54,7 @@ export default function ExplorePage() {
   return (
     <div className="py-16 lg:px-10">
       <div className="container mx-auto">
-        <h2 className="text-lg lg:text-xl my-3 font-semibold capitalize">
+        <h2 className="text-lg lg:text-xl my-3 font-semibold capitalize px-3 md:px-[5rem] lg:px-0">
           Popular {params?.explore} show
         </h2>
         <div className="grid grid-cols-[repeat(auto-fit,270px)] gap-5 justify-center lg:justify-start">

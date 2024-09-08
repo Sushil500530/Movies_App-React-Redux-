@@ -8,7 +8,7 @@ export const menuItems = [
     {
         id: 1,
         label: "TV Show",
-        href: "tv-show",
+        href: "tv",
         icon: <PiTelevisionFill />
     },
     {

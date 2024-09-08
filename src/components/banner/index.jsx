@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom";
 
 export default function BannerHome() {
     const { bannerData } = useSelector(state => state?.moviesData);
@@ -26,7 +27,10 @@ export default function BannerHome() {
 
         return () => clearInterval(interval);
     }, [bannerData, currentImage])
-    // console.log("what is find: " + bannerData)
+    
+    // console.log("what is find: " ,bannerData)
+
+
     return (
         <section className="w-full h-full">
 
@@ -69,7 +73,7 @@ export default function BannerHome() {
 
                             {/* footer details in banner  */}
                             <div className="container mx-auto ">
-                                <div className="absolute bottom-10 max-w-md px-3  ">
+                                <div className="absolute bottom-10 max-w-md px-3 z-20 ">
                                     <h1 className="font-bold text-2xl lg:text-4xl">{item?.title || item?.name}</h1>
                                     <p className="text-ellipsis line-clamp-3 my-2">{item?.overview}</p>
                                     <div className=" flex items-center gap-5">
@@ -78,9 +82,11 @@ export default function BannerHome() {
                                         <h1>Views :
                                             {Number(item?.popularity).toFixed(0)}</h1>
                                     </div>
-                                    <button
-                                        className="bg-gradient-to-l from-amber-600 to-red-700 active:scale-90 z-10 transition-all font-normal text-base px-4 py-2 rounded mt-3"
-                                    >Play Now</button>
+                                    <Link to={`/${item?.media_type}/${item?.id}`}>
+                                    <button className="bg-gradient-to-l from-amber-600 to-red-700 active:scale-90 z-10 transition-all font-normal text-base px-4 py-2 rounded !mt-3">
+                                         Play Now
+                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

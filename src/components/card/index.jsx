@@ -8,7 +8,7 @@ export default function Card({ data, tranding,media_type, index }) {
   const mediaType = data?.mediaType ?? media_type ;
   return (
     <Link to={"/" + mediaType + "/" + data?.id}>
-      <div className="w-full lg:min-w-[270px] h-80 rounded overflow-hidden relative z-10 hover:scale-105 transition-all">
+      <div className="w-full min-w-[260px] max-w-[260px] h-80 overflow-hidden block rounded relative hover:scale-105 transition-all">
         {
           data?.poster_path ?  <img
           src={imageURL + data?.poster_path}
@@ -32,7 +32,7 @@ export default function Card({ data, tranding,media_type, index }) {
           <h2 className="text-ellipsis line-clamp-1 text-lg font-semibold"> {data?.title || data?.name}</h2>
           <div className="text-neutral-400 text-base font-normal flex justify-between items-center">
             <p> {moment(data?.release_date).format("MMMM Do YYYY")}</p>
-            <p className="bg-gradient-to-l from-amber-600 to-red-700 pl-4 pr-2 text-sm text-white rating py-[2px]">Rating: {Number(data?.vote_average).toFixed(1)}</p>
+            <p className="bg-gradient-to-l from-amber-600 to-red-700 pl-4 pr-2 text-sm text-white rating py-[2px] text-[12px]">Rating: {Number(data?.vote_average).toFixed(1)}</p>
           </div>
 
         </div>
