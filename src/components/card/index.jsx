@@ -32,7 +32,7 @@ export default function Card({ data, tranding,media_type, index }) {
           <h2 className="text-ellipsis line-clamp-1 text-lg font-semibold"> {data?.title || data?.name}</h2>
           <div className="text-neutral-400 text-base font-normal flex justify-between items-center">
             <p> {moment(data?.release_date).format("MMMM Do YYYY")}</p>
-            <p className="bg-gradient-to-l from-amber-600 to-red-700 pl-4 pr-2 text-sm text-white rating py-[2px] text-[12px]">Rating: {Number(data?.vote_average).toFixed(1)}</p>
+            <p className="bg-gradient-to-l from-amber-600 to-red-700 pl-4 pr-2 text-[12px] text-white rating py-[2px]">Rating: {Number(data?.vote_average).toFixed(1)}</p>
           </div>
 
         </div>
